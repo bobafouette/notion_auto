@@ -170,7 +170,10 @@ def create_daily_tracker_page():
 if __name__ == "__main__":
     logging.getLogger('HabitTracker').setLevel(logging.INFO)
     sh = logging.StreamHandler(sys.stdout)
-    sh.setFormatter(logging.Formatter('%(asctime)s - [%(levelname)s]: %(message)s'))
+    fh = logging.FileHandler('/var/log/notion_auto.log')
+    formatter = logging.Formatter('%(asctime)s - [%(levelname)s]: %(message)s')
+    sh.setFormatter(formatter)
+    fh.setFormatter(formatter)
     logging.getLogger('HabitTracker').addHandler(sh)
 
     create_daily_tracker_page()
