@@ -45,11 +45,11 @@ SEARCH_PAGE_PAYLOAD = {
 
 
 
-class TooManyDailyTrackingPagse(Exception):
+class TooManyDailyTrackingPages(Exception):
 
     def __init__(self, nb_tracking_pages):
         self.message = "1 or None daily tracking pages should exists, found {}.".format(nb_tracking_pages)
-        super(TooManyDailyTrackingPagse, self).__init__(self.message)
+        super(TooManyDailyTrackingPages, self).__init__(self.message)
 
 
 
@@ -154,7 +154,7 @@ def create_daily_tracker_page():
         logging.getLogger('HabitTracker').warning("A daily tracking page already exists")
         return
     if len(daily_tacker_pages) > 1:
-        raise TooManyDailyTrackingPagse(len(daily_tacker_pages))
+        raise TooManyDailyTrackingPages(len(daily_tacker_pages))
 
     notion_api = Notion()
     try:
